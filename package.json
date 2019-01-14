@@ -31,7 +31,8 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "browser": true
     },
     "extends": [
       "plugin:vue/essential",
@@ -39,11 +40,15 @@
       "google",
       "renew"
     ],
-    "rules": {
-    },
+    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
+  },
+  "babel": {
+    "presets": [
+        "@vue/app"
+    ]
   },
   "postcss": {
     "plugins": {
