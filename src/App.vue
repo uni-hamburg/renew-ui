@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style>
-html, body {
+html, body, #app {
   height: 100%;
   margin: 0;
 }
