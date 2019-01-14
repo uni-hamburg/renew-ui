@@ -1,0 +1,7 @@
+{
+  "name": "renew-ui",
+  "version": "0.1.0",
+  "dependencies": {
+    "renew-lib": "https://github.com/uni-hamburg/renew-lib/tarball/master"
+  }
+}
