@@ -24,6 +24,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-config-google": "^0.11.0",
+    "eslint-config-renew": "git+https://github.com/uni-hamburg/eslint-config-renew.git",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
   },
@@ -35,10 +36,10 @@
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended",
-      "google"
+      "google",
+      "renew"
     ],
     "rules": {
-      "indent": ["error", 4]
     },
     "parserOptions": {
       "parser": "babel-eslint"
