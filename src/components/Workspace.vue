@@ -10,12 +10,14 @@ import Drawing from 'renew-lib';
 export default {
     props: {
     },
-    mounted() {
-        new Drawing();
+    mounted () {
+        new Drawing('workspace');
     },
 };
 </script>
 
-<style scoped>
-
+<style>
+  #workspace {
+    height: 100%;
+  }
 </style>

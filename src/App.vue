@@ -14,8 +14,8 @@ export default {
 };
 </script>
 
-<style>
-html, body {
+<style lang="scss">
+html, body, #app {
   height: 100%;
   margin: 0;
 }
