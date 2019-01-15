@@ -9,6 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "renew-formalism-pt": "git+https://github.com/uni-hamburg/renew-formalism-pt.git",
     "renew-lib": "git+https://github.com/uni-hamburg/renew-lib.git",
     "vue": "^2.5.21",
     "vuex": "^3.0.1"
