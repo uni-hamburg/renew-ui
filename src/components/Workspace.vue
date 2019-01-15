@@ -20,5 +20,4 @@ export default {
   #workspace {
     height: 100%;
   }
-
 </style>

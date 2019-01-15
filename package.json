@@ -26,6 +26,8 @@
     "eslint-config-google": "^0.11.0",
     "eslint-config-renew": "git+https://github.com/uni-hamburg/eslint-config-renew.git",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
@@ -47,7 +49,7 @@
   },
   "babel": {
     "presets": [
-        "@vue/app"
+      "@vue/app"
     ]
   },
   "postcss": {
