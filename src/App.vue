@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Header />
     <Workspace/>
   </div>
 </template>
 
 <script>
-import Workspace from './components/Workspace.vue';
+import Workspace from './components/Workspace';
+import Header from './components/header/Header';
 
 export default {
     components: {
         Workspace,
+        Header,
     },
 };
 </script>
@@ -20,7 +23,7 @@ html, body, #app {
   margin: 0;
 }
 #app {
-  font-family: sans-serif;
+  font-family: Roboto,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

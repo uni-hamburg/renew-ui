@@ -1,5 +1,5 @@
 <template>
-  <div id="workspace">
+  <div id="rnw-workspace">
 
   </div>
 </template>
@@ -12,14 +12,14 @@ export default {
     props: {
     },
     mounted () {
-        let drawing = new Drawing('workspace');
+        let drawing = new Drawing('rnw-workspace');
         drawing.addFormalism(new PluginPT());
     },
 };
 </script>
 
 <style>
-  #workspace {
+  #rnw-workspace {
     height: 100%;
   }
 </style>
