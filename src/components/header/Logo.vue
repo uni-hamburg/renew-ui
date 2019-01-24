@@ -23,6 +23,6 @@
     margin: 4px 0 4px 8px;
     width: 42px;
     height: 42px;
-    content: url("../../assets/rnw-logo.gif");
+    content: url("../../assets/rnw-logo.svg");
   }
 </style>
