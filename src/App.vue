@@ -23,7 +23,7 @@ html, body, #app {
   margin: 0;
 }
 #app {
-  font-family: Roboto,Arial,sans-serif;
+  font-family: Noto Sans,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
