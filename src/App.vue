@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Workspace/>
+    <Workspace />
   </div>
 </template>
 
@@ -17,13 +17,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 html, body, #app {
   height: 100%;
   margin: 0;
 }
 #app {
-  font-family: Noto Sans,sans-serif;
+  font-family: Noto Sans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
