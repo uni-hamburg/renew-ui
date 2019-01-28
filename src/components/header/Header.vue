@@ -3,14 +3,14 @@
     <Logo />
     <div class="rnw-header-bars">
       <TitleBar />
-      <MenuBar />
+      <MenuBar :drawing="drawing" />
     </div>
   </div>
 </template>
 
 <script>
 import Logo from './Logo';
-import MenuBar from './MenuBar';
+import MenuBar from './menu/MenuBar';
 import TitleBar from './TitleBar';
 
 export default {
@@ -20,13 +20,14 @@ export default {
         Logo,
         TitleBar,
     },
+    props: ['drawing'],
 };
 </script>
 
 <style>
 .rnw-header {
-  background: #FAFAFA;
-  border-bottom: solid 1px #CCC;
+  background: #fafafa;
+  border-bottom: solid 1px #ccc;
   display: flex;
 }
 .rnw-header-bars {

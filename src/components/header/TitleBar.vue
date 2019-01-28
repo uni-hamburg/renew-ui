@@ -16,14 +16,11 @@ export default {
 
 <style scoped>
 .rwn-title-bar {
-  padding-top: 8px;
-  height: 32px;
+  margin-top: 4px;
 }
 .rnw-title-input {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background-color: inherit;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border-radius: 2px;
   font-size: 18px;
   line-height: 22px;
@@ -35,7 +32,6 @@ export default {
 }
 .rnw-title-input:focus {
   background-color: white;
-  border: 2px solid #333;
-  margin: -1px;
+  border-color: #333;
 }
 </style>
