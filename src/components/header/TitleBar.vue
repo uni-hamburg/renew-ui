@@ -3,7 +3,9 @@
     <input
       class="rnw-title-input"
       type="text"
-      placeholder="Untitled Diagram"
+      :placeholder="placeholder"
+      v-model="title"
+      @input="updateTitle"
     >
   </div>
 </template>
@@ -11,6 +13,20 @@
 <script>
 export default {
     name: 'TitleBar',
+    data () {
+        return {
+            title: '',
+            placeholder: 'Untitled Drawing',
+        }
+    },
+    mounted () {
+        this.updateTitle();
+    },
+    methods: {
+        updateTitle () {
+            document.title = (this.title || this.placeholder) +' - Renew';
+        }
+    }
 };
 </script>
 
