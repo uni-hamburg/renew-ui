@@ -1,11 +1,11 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="New Drawing …" />
-    <MenuDropdownItem label="Open Drawing …" />
-    <MenuDropdownItem label="Save Drawing …" />
+    <MenuDropdownItem label="New Drawing…" />
+    <MenuDropdownItem label="Open Drawing…" />
+    <MenuDropdownItem label="Save Drawing…" />
     <MenuDropdownSeparator />
-    <MenuDropdownItem label="Import Drawing …" />
-    <MenuDropdownItem label="Export Drawing …" />
+    <MenuDropdownItem label="Import Drawing…" />
+    <MenuDropdownItem label="Export Drawing…" />
   </MenuDropdown>
 </template>
 
