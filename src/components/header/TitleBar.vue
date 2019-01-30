@@ -17,7 +17,7 @@ export default {
         return {
             title: '',
             placeholder: 'Untitled Drawing',
-        }
+        };
     },
     mounted () {
         this.updateTitle();
@@ -25,8 +25,8 @@ export default {
     methods: {
         updateTitle () {
             document.title = (this.title || this.placeholder) +' - Renew';
-        }
-    }
+        },
+    },
 };
 </script>
 

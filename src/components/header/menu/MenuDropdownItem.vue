@@ -24,7 +24,7 @@ export default {
         },
     },
     computed: {
-        shortkeyHint () {
+        shortkeyHint: function () {
             if (Array.isArray(this.shortkey)) {
                 return this.shortkey.join('+');
             }
@@ -54,6 +54,7 @@ export default {
   }
 }
 .rnw-menu-dropdown-item-shortkey {
+  font-family: 'Source Code Pro', monospace;
   padding-left: 24px;
   font-size: 12px;
   color: #999;

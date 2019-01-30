@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         runSimulation: function () {
-            console.log(window.drawing);
+            console.log(window.drawing._definitions);
         },
     },
 };
