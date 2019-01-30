@@ -50,5 +50,12 @@ export default {
       background-color: #eee;
     }
   }
+  &:active, &.active {
+    .rnw-menu-bar-item-label {
+      background-color: #eee;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 }
 </style>

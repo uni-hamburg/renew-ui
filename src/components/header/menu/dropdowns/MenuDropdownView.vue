@@ -1,7 +1,7 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Zoom In" shortcut="Ctrl++" />
-    <MenuDropdownItem label="Zoom Out" shortcut="Ctrl+-" />
+    <MenuDropdownItem label="Zoom In" :shortkey="['ctrl', '+']" />
+    <MenuDropdownItem label="Zoom Out" :shortkey="['ctrl', '-']" />
   </MenuDropdown>
 </template>
 

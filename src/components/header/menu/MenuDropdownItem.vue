@@ -1,24 +1,34 @@
 <template>
   <div
     class="rnw-menu-dropdown-item"
-    @click="emitClick($event)"
+    v-shortkey="shortkey"
+    @shortkey="emitAction($event)"
+    @click="emitAction($event)"
   >
     <span class="rnw-menu-dropdown-item-label">{{ label }}</span>
-    <span class="rnw-menu-dropdown-item-shortcut">{{ shortcut }}</span>
+    <span class="rnw-menu-dropdown-item-shortkey">{{ shortkeyHint }}</span>
   </div>
 </template>
 
 <script>
 export default {
     name: 'MenuDropdownItem',
-    props: ['label', 'shortcut'],
+    props: ['label', 'shortkey'],
     data () {
         return {};
     },
     methods: {
-        emitClick: function (e) {
+        emitAction: function (e) {
             e.preventDefault();
-            this.$emit('click');
+            this.$emit('action');
+        },
+    },
+    computed: {
+        shortkeyHint () {
+            if (Array.isArray(this.shortkey)) {
+                return this.shortkey.join('+');
+            }
+            return '';
         },
     },
 };
@@ -43,9 +53,11 @@ export default {
     background-color: #eee;
   }
 }
-.rnw-menu-dropdown-item-shortcut {
+.rnw-menu-dropdown-item-shortkey {
   padding-left: 24px;
-  color: #666;
+  font-size: 12px;
+  color: #999;
   font-weight: 600;
+  text-transform: uppercase;
 }
 </style>

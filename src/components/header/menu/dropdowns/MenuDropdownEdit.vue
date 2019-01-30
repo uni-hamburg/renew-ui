@@ -1,13 +1,17 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Undo" shortcut="Ctrl+Z" />
-    <MenuDropdownItem label="Redo" shortcut="Ctrl+Y" />
+    <MenuDropdownItem
+        label="Undo"
+        :shortkey="['ctrl', 'z']"
+        @action="undo"
+    />
+    <MenuDropdownItem label="Redo" :shortkey="['ctrl', 'y']" />
     <MenuDropdownSeparator />
-    <MenuDropdownItem label="Cut" shortcut="Ctrl+X" />
-    <MenuDropdownItem label="Copy" shortcut="Ctrl+C" />
-    <MenuDropdownItem label="Paste" shortcut="Ctrl+P" />
+    <MenuDropdownItem label="Cut" :shortkey="['ctrl', 'x']" />
+    <MenuDropdownItem label="Copy" :shortkey="['ctrl', 'c']" />
+    <MenuDropdownItem label="Paste" :shortkey="['ctrl', 'p']" />
     <MenuDropdownSeparator />
-    <MenuDropdownItem label="Select All" shortcut="Ctrl+A" />
+    <MenuDropdownItem label="Select All" :shortkey="['ctrl', 'a']" />
   </MenuDropdown>
 </template>
 
@@ -22,6 +26,11 @@ export default {
         MenuDropdown,
         MenuDropdownItem,
         MenuDropdownSeparator,
+    },
+    methods: {
+        undo: function () {
+            console.log('undo');
+        },
     },
 };
 </script>

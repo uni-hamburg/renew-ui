@@ -1,8 +1,8 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="New Drawing…" shortcut="Ctrl+N" />
-    <MenuDropdownItem label="Open Drawing…" shortcut="Ctrl+O" />
-    <MenuDropdownItem label="Save Drawing…" shortcut="Ctrl+S" />
+    <MenuDropdownItem label="New Drawing…" :shortkey="['ctrl', 'n']" />
+    <MenuDropdownItem label="Open Drawing…" :shortkey="['ctrl', 'o']" />
+    <MenuDropdownItem label="Save Drawing…" :shortkey="['ctrl', 's']" />
     <MenuDropdownSeparator />
     <MenuDropdownItem label="Import Drawing…" />
     <MenuDropdownItem label="Export Drawing…" />

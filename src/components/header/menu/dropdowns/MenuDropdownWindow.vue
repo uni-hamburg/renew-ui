@@ -1,6 +1,6 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Fullscreen" shortcut="F11" />
+    <MenuDropdownItem label="Fullscreen" :shortkey="['f11']" />
   </MenuDropdown>
 </template>
 

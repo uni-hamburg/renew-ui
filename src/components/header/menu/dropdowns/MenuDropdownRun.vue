@@ -1,9 +1,13 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Run Simulation" shortcut="Ctrl+R" @click="runSimulation" />
-    <MenuDropdownItem label="Simulation Step" shortcut="Ctrl+I" />
-    <MenuDropdownItem label="Halt Simulation" shortcut="Ctrl+H" />
-    <MenuDropdownItem label="Stop Simulation" shortcut="Ctrl+T" />
+    <MenuDropdownItem
+        label="Run Simulation"
+        :shortkey="['ctrl', 'r']"
+        @action="runSimulation"
+    />
+    <MenuDropdownItem label="Simulation Step" :shortkey="['ctrl', 'i']" />
+    <MenuDropdownItem label="Halt Simulation" :shortkey="['ctrl', 'h']" />
+    <MenuDropdownItem label="Stop Simulation" :shortkey="['ctrl', 't']" />
   </MenuDropdown>
 </template>
 
