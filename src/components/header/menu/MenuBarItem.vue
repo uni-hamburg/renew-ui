@@ -36,14 +36,13 @@ export default {
 .rnw-menu-bar-item {
   position: relative;
   font-size: 14px;
-  letter-spacing: 0.15pt;
 
   .rnw-menu-bar-item-label {
     color: #333;
     text-decoration: none;
     border-radius: 4px;
     outline: none;
-    padding: 2px 6px;
+    padding: 2px 10px;
   }
   &:hover, &:active, &.active {
     .rnw-menu-bar-item-label {

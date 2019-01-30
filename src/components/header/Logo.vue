@@ -12,7 +12,7 @@ export default {
 
 <style>
 .rnw-logo {
-  margin: 12px;
+  margin: 15px 12px 15px 22px;
 }
 .rnw-logo-img {
   width: 42px;

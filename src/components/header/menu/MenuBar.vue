@@ -75,6 +75,6 @@ export default {
 <style scoped>
 .rnw-menu-bar {
   display: flex;
-  margin: 2px 4px;
+  margin: 2px 0;
 }
 </style>

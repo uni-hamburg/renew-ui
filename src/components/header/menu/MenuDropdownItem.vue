@@ -44,7 +44,6 @@ export default {
   white-space: nowrap;
   color: #333;
   font-size: 14px;
-  letter-spacing: .2px;
   line-height: 20px;
   text-decoration: none;
   min-width: 100px;

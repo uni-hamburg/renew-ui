@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 .rwn-title-bar {
-  margin-top: 4px;
+  margin-top: 8px;
 }
 .rnw-title-input {
   border: 2px solid transparent;
