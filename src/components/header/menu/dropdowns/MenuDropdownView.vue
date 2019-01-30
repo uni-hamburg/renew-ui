@@ -1,7 +1,7 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Zoom In" />
-    <MenuDropdownItem label="Zoom Out" />
+    <MenuDropdownItem label="Zoom In" shortcut="Ctrl++" />
+    <MenuDropdownItem label="Zoom Out" shortcut="Ctrl+-" />
   </MenuDropdown>
 </template>
 

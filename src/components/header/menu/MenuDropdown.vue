@@ -19,12 +19,13 @@ export default {
   display: none;
   position: absolute;
   z-index: 1000;
-  border-radius: 2px;
-  border-top-left-radius: 0;
+  border-radius: 0 2px 2px 2px;
+  margin-top: 2px;
   background: #fff;
   border: 1px solid #ccc;
 }
 .rnw-menu-bar-item.active .rnw-menu-dropdown {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 </style>

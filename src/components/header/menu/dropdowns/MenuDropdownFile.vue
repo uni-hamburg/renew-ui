@@ -1,8 +1,8 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="New Drawing…" />
-    <MenuDropdownItem label="Open Drawing…" />
-    <MenuDropdownItem label="Save Drawing…" />
+    <MenuDropdownItem label="New Drawing…" shortcut="Ctrl+N" />
+    <MenuDropdownItem label="Open Drawing…" shortcut="Ctrl+O" />
+    <MenuDropdownItem label="Save Drawing…" shortcut="Ctrl+S" />
     <MenuDropdownSeparator />
     <MenuDropdownItem label="Import Drawing…" />
     <MenuDropdownItem label="Export Drawing…" />

@@ -1,6 +1,6 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Fullscreen" />
+    <MenuDropdownItem label="Fullscreen" shortcut="F11" />
   </MenuDropdown>
 </template>
 
