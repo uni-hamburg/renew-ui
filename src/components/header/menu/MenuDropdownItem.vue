@@ -45,7 +45,7 @@ export default {
 }
 .rnw-menu-dropdown-item-shortcut {
   padding-left: 24px;
-  color: #888;
+  color: #666;
   font-weight: 600;
 }
 </style>
