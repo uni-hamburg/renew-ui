@@ -10,32 +10,36 @@
       <div
         id="rnw-simulation"
         class="rnw-canvas"
-        v-show="isSimulating"
+        v-show="isSimulation"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import PluginPT from 'renew-formalism-pt';
 import { Drawing, Simulation } from 'renew-lib';
 
 import Header from './components/header/Header';
 
-const contexts = {
+export const contexts = {
     drawing: 'draw',
-    simulating: 'simulate',
+    simulation: 'simulate',
 };
 
 export default {
     components: {
         Header,
     },
-    data () {
-        return {
-            contexts,
-            activeContext: contexts.drawing,
-        };
+    computed: {
+        ...mapState(['activeContext']),
+        isDrawing: function () {
+            return this.activeContext === contexts.drawing;
+        },
+        isSimulation: function () {
+            return this.activeContext === contexts.simulation;
+        },
     },
     mounted: function () {
         // Initialize Drawing
@@ -45,15 +49,7 @@ export default {
 
         // Initialize Simulation
         const simulation = new Simulation('rnw-simulation');
-        window.drawing = simulation;
-    },
-    computed: {
-        isDrawing: function () {
-            return this.activeContext === contexts.drawing;
-        },
-        isSimulating: function () {
-            return this.activeContext === contexts.simulating;
-        },
+        window.simulation = simulation;
     },
 };
 </script>

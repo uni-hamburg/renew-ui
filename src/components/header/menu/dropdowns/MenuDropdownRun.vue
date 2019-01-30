@@ -1,17 +1,28 @@
 <template>
   <MenuDropdown>
     <MenuDropdownItem
-        label="Run Simulation"
-        :shortkey="['ctrl', 'r']"
-        @action="runSimulation"
+      label="Run Simulation"
+      :shortkey="['ctrl', 'r']"
+      @action="runSimulation"
     />
-    <MenuDropdownItem label="Simulation Step" :shortkey="['ctrl', 'i']" />
-    <MenuDropdownItem label="Halt Simulation" :shortkey="['ctrl', 'h']" />
-    <MenuDropdownItem label="Stop Simulation" :shortkey="['ctrl', 't']" />
+    <MenuDropdownItem
+      label="Simulation Step"
+      :shortkey="['ctrl', 'i']"
+    />
+    <MenuDropdownItem
+      label="Halt Simulation"
+      :shortkey="['ctrl', 'h']"
+    />
+    <MenuDropdownItem
+      label="Stop Simulation"
+      :shortkey="['ctrl', 't']"
+      @action="stopSimulation"
+    />
   </MenuDropdown>
 </template>
 
 <script>
+import { contexts } from '../../../../App.vue';
 import MenuDropdown from '../MenuDropdown';
 import MenuDropdownItem from '../MenuDropdownItem';
 
@@ -23,7 +34,12 @@ export default {
     },
     methods: {
         runSimulation: function () {
-            console.log(window.drawing._definitions);
+            console.log(contexts.simulation);
+            this.$store.commit('changeContext', contexts.simulation);
+        },
+        stopSimulation: function () {
+            console.log(contexts.drawing);
+            this.$store.commit('changeContext', contexts.drawing);
         },
     },
 };
