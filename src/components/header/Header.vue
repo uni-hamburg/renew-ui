@@ -3,7 +3,7 @@
     <Logo />
     <div class="rnw-header-bars">
       <TitleBar />
-      <MenuBar :drawing="drawing" />
+      <MenuBar />
     </div>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
         Logo,
         TitleBar,
     },
-    props: ['drawing'],
 };
 </script>
 
