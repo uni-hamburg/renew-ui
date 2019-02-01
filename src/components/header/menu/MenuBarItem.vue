@@ -42,7 +42,7 @@ export default {
     text-decoration: none;
     border-radius: 4px;
     outline: none;
-    padding: 2px 10px;
+    padding: 2px 8px;
   }
   &:hover, &:active, &.active {
     .rnw-menu-bar-item-label {
