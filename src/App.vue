@@ -1,25 +1,16 @@
 <template>
   <div id="rnw-app">
     <Header />
-    <div id="rnw-workspace">
-      <div
-        id="rnw-drawing"
-        class="rnw-canvas"
-        v-show="isDrawing"
-      />
-      <div
-        id="rnw-simulation"
-        class="rnw-canvas"
-        v-show="isSimulation"
-      />
-    </div>
+    <div
+      id="rnw-workspace"
+      ref="workspace"
+    />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import PluginPT from 'renew-formalism-pt';
-import { Drawing, Simulation } from 'renew-lib';
 
 import Header from './components/header/Header';
 
@@ -32,24 +23,23 @@ export default {
     components: {
         Header,
     },
-    computed: {
-        ...mapState(['activeContext']),
-        isDrawing: function () {
-            return this.activeContext === contexts.drawing;
-        },
-        isSimulation: function () {
-            return this.activeContext === contexts.simulation;
+    computed: mapState(['activeContext']),
+    watch: {
+        activeContext: function (newContext) {
+            console.log('New context:', newContext);
+            if (newContext === contexts.drawing) {
+                this.$simulation.detach();
+                this.$drawing.attachTo(this.$refs.workspace);
+            } else {
+                this.$drawing.detach();
+                this.$simulation.attachTo(this.$refs.workspace);
+            }
         },
     },
     mounted: function () {
         // Initialize Drawing
-        const drawing = new Drawing('rnw-drawing');
-        drawing.addFormalism(new PluginPT());
-        window.drawing = drawing;
-
-        // Initialize Simulation
-        const simulation = new Simulation('rnw-simulation');
-        window.simulation = simulation;
+        this.$drawing.addFormalism(new PluginPT());
+        this.$store.commit('changeContext', contexts.drawing);
     },
 };
 </script>
@@ -59,7 +49,7 @@ export default {
 </style>
 
 <style lang="scss">
-html, body, #rnw-app, .rnw-canvas {
+html, body, #rnw-app, .rnw-container {
   height: 100%;
   width: 100%;
   margin: 0;

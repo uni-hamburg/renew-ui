@@ -34,11 +34,9 @@ export default {
     },
     methods: {
         runSimulation: function () {
-            console.log(contexts.simulation);
             this.$store.commit('changeContext', contexts.simulation);
         },
         stopSimulation: function () {
-            console.log(contexts.drawing);
             this.$store.commit('changeContext', contexts.drawing);
         },
     },

@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         contexts,
-        activeContext: contexts.drawing,
+        activeContext: null,
     },
     mutations: {
         changeContext: function (state, newContext) {
