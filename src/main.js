@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueShortkey from 'vue-shortkey';
 
-import { Drawing, Simulation } from 'renew-lib';
+import { Modeler, Simulator } from 'renew-lib';
 
 import App from './App.vue';
 import store from './store';
@@ -10,8 +10,8 @@ Vue.use(VueShortkey);
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$drawing = new Drawing();
-Vue.prototype.$simulation = new Simulation();
+Vue.prototype.$modeler = new Modeler();
+Vue.prototype.$simulator = new Simulator();
 
 window.vm = new Vue({
     store,

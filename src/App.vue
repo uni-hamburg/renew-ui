@@ -25,20 +25,22 @@ export default {
     },
     computed: mapState(['activeContext']),
     watch: {
-        activeContext: function (newContext) {
-            console.log('New context:', newContext);
-            if (newContext === contexts.drawing) {
-                this.$simulation.detach();
-                this.$drawing.attachTo(this.$refs.workspace);
-            } else {
-                this.$drawing.detach();
-                this.$simulation.attachTo(this.$refs.workspace);
+        activeContext: function (context) {
+            switch (context) {
+                case contexts.drawing:
+                    this.$simulator.detach();
+                    this.$modeler.attachTo(this.$refs.workspace);
+                    break;
+                case contexts.simulation:
+                    this.$modeler.detach();
+                    this.$simulator.attachTo(this.$refs.workspace);
+                    break;
             }
         },
     },
     mounted: function () {
         // Initialize Drawing
-        this.$drawing.addFormalism(new PluginPT());
+        this.$modeler.addFormalism(new PluginPT());
         this.$store.commit('changeContext', contexts.drawing);
     },
 };
