@@ -10,13 +10,12 @@
 
 <script>
 import { mapState } from 'vuex';
-import PluginPT from 'renew-formalism-pt';
 
 import Header from './components/header/Header';
 
 export const contexts = {
-    drawing: 'draw',
-    simulation: 'simulate',
+    modeling: 'modeler',
+    simulating: 'simulator',
 };
 
 export default {
@@ -26,22 +25,15 @@ export default {
     computed: mapState(['activeContext']),
     watch: {
         activeContext: function (context) {
-            switch (context) {
-                case contexts.drawing:
-                    this.$simulator.detach();
-                    this.$modeler.attachTo(this.$refs.workspace);
-                    break;
-                case contexts.simulation:
-                    this.$modeler.detach();
-                    this.$simulator.attachTo(this.$refs.workspace);
-                    break;
+            if (this.$context) {
+                this.$context.detach();
             }
+            this.$context = this.$instances[context];
+            this.$context.attachTo(this.$refs.workspace);
         },
     },
     mounted: function () {
-        // Initialize Drawing
-        this.$modeler.addFormalism(new PluginPT());
-        this.$store.commit('changeContext', contexts.drawing);
+        this.$store.commit('changeContext', contexts.modeling);
     },
 };
 </script>
