@@ -33,7 +33,7 @@ export default {
         },
     },
     mounted: function () {
-        this.$store.commit('changeContext', contexts.modeling);
+        this.$store.commit('setActiveContext', contexts.modeling);
     },
 };
 </script>

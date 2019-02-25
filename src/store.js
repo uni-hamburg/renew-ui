@@ -6,13 +6,22 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         activeContext: null,
+        drawingTitle: null,
     },
     mutations: {
-        changeContext: function (state, newContext) {
-            state.activeContext = newContext;
+        setActiveContext: function (state, context) {
+            state.activeContext = context;
+        },
+        setDrawingTitle: function (state, title) {
+            state.drawingTitle = title;
         },
     },
     actions: {
 
+    },
+    getters: {
+        activeInstance: function (state) {
+            return this.$instances[state.activeContext];
+        },
     },
 });

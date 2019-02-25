@@ -34,10 +34,10 @@ export default {
     },
     methods: {
         runSimulation: function () {
-            this.$store.commit('changeContext', contexts.simulating);
+            this.$store.commit('setActiveContext', contexts.simulating);
         },
         stopSimulation: function () {
-            this.$store.commit('changeContext', contexts.modeling);
+            this.$store.commit('setActiveContext', contexts.modeling);
         },
     },
 };

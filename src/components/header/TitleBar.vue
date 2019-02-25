@@ -3,28 +3,36 @@
     <input
       class="rnw-title-input"
       type="text"
+      :value="title"
       :placeholder="placeholder"
-      v-model="title"
       @input="updateTitle"
     >
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: 'TitleBar',
     data () {
         return {
-            title: '',
             placeholder: 'Untitled Drawing',
         };
+    },
+    computed: {
+        ...mapState({
+            title: (state) => state.drawingTitle,
+        }),
     },
     mounted () {
         this.updateTitle();
     },
     methods: {
-        updateTitle () {
-            document.title = (this.title || this.placeholder) +' - Renew';
+        updateTitle (event) {
+            const title = event ? event.target.value : '';
+            this.$store.commit('setDrawingTitle', title);
+            document.title = (title || this.placeholder) +' - Renew';
         },
     },
 };
