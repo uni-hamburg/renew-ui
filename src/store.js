@@ -20,8 +20,6 @@ export default new Vuex.Store({
 
     },
     getters: {
-        activeInstance: function (state) {
-            return this.$instances[state.activeContext];
-        },
+
     },
 });
