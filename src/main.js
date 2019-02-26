@@ -7,6 +7,8 @@ import PluginPT from 'renew-formalism-pt';
 import App from './App.vue';
 import store from './store';
 
+import './assets/styles/helpers.scss';
+
 const modeler = new Modeler();
 modeler.addFormalism(new PluginPT());
 

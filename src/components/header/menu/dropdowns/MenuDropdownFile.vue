@@ -1,15 +1,32 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="New Drawing…" :shortkey="['ctrl', 'n']" />
-    <MenuDropdownItem label="Open Drawing…" :shortkey="['ctrl', 'o']" />
+    <MenuDropdownItem
+      label="New Drawing…"
+      :shortkey="['ctrl', 'n']"
+    />
+    <MenuDropdownItem
+      label="Open Drawing…"
+      :shortkey="['ctrl', 'o']"
+      @action="openJSON"
+    />
     <MenuDropdownItem
       label="Save Drawing…"
       :shortkey="['ctrl', 's']"
-      @action="save"
+      @action="saveJSON"
     />
     <MenuDropdownSeparator />
     <MenuDropdownItem label="Import Drawing…" />
     <MenuDropdownItem label="Export Drawing…" />
+    <input
+      ref="fileInputHelper"
+      type="file"
+      class="hide"
+      @change="handleFile"
+    >
+    <a
+      ref="fileOutputHelper"
+      class="hide"
+    />
   </MenuDropdown>
 </template>
 
@@ -28,31 +45,78 @@ export default {
     },
     computed: mapState(['activeContext', 'drawingTitle']),
     methods: {
-        save: function () {
-            const json = this.$instances[this.activeContext].exportJSON();
-            const title = this.drawingTitle || 'untitled';
-            const fileName = title.replace(/\s+/g, '_').replace(/\W+/g, '');
-            const mimeType = 'application/json';
-            this.createDownload(json, fileName + '.json', mimeType);
+        open: function (fileEnding) {
+            const helperElement = this.$refs.fileInputHelper;
+
+            helperElement.setAttribute('accept', fileEnding);
+            helperElement.click();
         },
-        createDownload: function (content, fileName, mimeType) {
+        save: function (content, mimeType, fileEnding) {
             content = encodeURIComponent(content);
-            mimeType = mimeType || 'text/plain';
 
-            const element = document.createElement('a');
+            const title = this.drawingTitle || 'Untitled_Drawing';
+            const fileName = title.replace(/\s+/g, '_').replace(/\W+/g, '');
             const href = 'data:' + mimeType + ';charset=utf-8,' + content;
-            element.setAttribute('href', href);
-            element.setAttribute('download', fileName);
-            element.style.display = 'none';
+            const helperElement = this.$refs.fileOutputHelper;
 
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+            helperElement.setAttribute('href', href);
+            helperElement.setAttribute('download', fileName + fileEnding);
+            helperElement.click();
+        },
+        openJSON: function () {
+            this.open('.json');
+        },
+        saveJSON: function () {
+            const activeInstance = this.$instances[this.activeContext];
+            const json = JSON.stringify({
+                title: this.drawingTitle,
+                elements: activeInstance.getElements(),
+            }, null, 2);
+            this.save(json, 'application/json', '.json');
+        },
+        handleFile: function (event) {
+            const activeInstance = this.$instances[this.activeContext];
+            const file = event.target.files[0];
+            const vm = this;
+
+            this.readFile(file).then((res) => {
+                let imported;
+                switch (file.type) {
+                    case 'application/json':
+                        imported = JSON.parse(res);
+                        this.$store.commit('setDrawingTitle', imported.title);
+                        activeInstance.setElements(imported.elements);
+                        break;
+                    default:
+                        console.log('Unsupported MIME type'); // TODO
+                }
+            }).catch((err) => {
+                alert(err);
+            });
+        },
+        readFile: function (file) {
+            const reader = new FileReader();
+            return new Promise((resolve, reject) => {
+                reader.onload = (event) => {
+                    const bytesRead = Math.round(event.total / 1024);
+                    console.log('Read ' + bytesRead + 'KB');
+                    resolve(reader.result);
+                };
+                reader.onloadstart = () => {
+                    console.log('Reading ' + file.name);
+                };
+                reader.onerror = () => {
+                    reject(new Error('Error reading ' + file.name));
+                };
+                reader.readAsText(file);
+            });
         },
     },
 };
 </script>
 
 <style scoped>
-
+  .d-none {
+    display: none;
+  }
 </style>
