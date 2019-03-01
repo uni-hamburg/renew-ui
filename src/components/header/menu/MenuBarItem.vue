@@ -36,6 +36,7 @@ export default {
 .rnw-menu-bar-item {
   position: relative;
   font-size: 14px;
+  user-select: none;
 
   .rnw-menu-bar-item-label {
     color: #333;
