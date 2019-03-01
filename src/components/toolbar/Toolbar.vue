@@ -1,7 +1,7 @@
 <template>
     <div class="rnw-toolbar">
         <div class="rnw-toolbar-tools">
-            <div v-for="tool in tools" :key="tool.type">
+            <div v-for="(tool, i) in tools" :key="i">
                 <div v-if="tool.type === 'separator'" class="rnw-toolbar-separator"></div>
                 <div v-else class="rnw-toolbar-tool">
                     <i :class="tool.icon"></i>
