@@ -1,10 +1,8 @@
 <template>
   <div id="rnw-app">
     <Header />
-    <div
-      id="rnw-workspace"
-      ref="workspace"
-    />
+    <Toolbar />
+    <div id="rnw-workspace" ref="workspace"></div>
   </div>
 </template>
 
@@ -12,6 +10,7 @@
 import { mapState } from 'vuex';
 
 import Header from './components/header/Header';
+import Toolbar from './components/toolbar/Toolbar';
 
 export const contexts = {
     modeling: 'modeler',
@@ -20,6 +19,7 @@ export const contexts = {
 
 export default {
     components: {
+        Toolbar,
         Header,
     },
     computed: mapState(['activeContext']),
@@ -40,6 +40,7 @@ export default {
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Source+Code+Pro:400,600');
+  @import "assets/css/renew-icons.css";
 </style>
 
 <style lang="scss">
