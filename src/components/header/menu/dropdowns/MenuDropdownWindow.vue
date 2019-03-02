@@ -1,6 +1,10 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="Fullscreen" :shortkey="['f11']" />
+    <MenuDropdownItem
+        :label="fullscreenLabel"
+        :shortkey="['f11']"
+        @action="requestFullscreen"
+    />
   </MenuDropdown>
 </template>
 
@@ -11,11 +15,34 @@ import MenuDropdownSeparator from '../MenuDropdownSeparator';
 
 export default {
     name: 'MenuDropdownView',
+    data () {
+        return {
+            fullscreenLabel: 'Fullscreen'
+        }
+    },
     components: {
         MenuDropdown,
         MenuDropdownItem,
         MenuDropdownSeparator,
     },
+    methods: {
+        requestFullscreen () {
+            if (document.fullscreenEnabled) {
+                if (this.isFullscreen()) {
+                    document.exitFullscreen();
+                    this.fullscreenLabel = 'Fullscreen';
+                } else {
+                    document.body.requestFullscreen().then(() => {
+                        this.fullscreenLabel = 'Exit Fullscreen';
+                    });
+                }
+            }
+        },
+        isFullscreen () {
+            // TODO: replace deprecated property
+            return document.fullscreen;
+        }
+    }
 };
 </script>
 
