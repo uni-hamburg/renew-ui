@@ -2,7 +2,10 @@
   <div class="rnw-toolbar">
     <div class="rnw-toolbar-tools">
       <div v-for="(tool, i) in tools" :key="i">
-        <div v-if="tool.type === 'separator'" class="rnw-toolbar-separator"></div>
+        <div
+          v-if="tool.type === 'separator'"
+          class="rnw-toolbar-separator"
+        ></div>
         <div v-else class="rnw-toolbar-tool">
           <i :class="tool.icon"></i>
         </div>
@@ -12,25 +15,25 @@
 </template>
 
 <script>
-    export default {
-        name: 'Toolbar.vue',
-        data () {
-            return {
-                tools: [
-                    { type: 'undo', icon: 'icon-undo' },
-                    { type: 'redo', icon: 'icon-redo' },
-                    { type: 'separator' },
-                    { type: 'bold', icon: 'icon-bold' },
-                    { type: 'italic', icon: 'icon-italic' },
-                    { type: 'underline', icon: 'icon-underline' },
-                    { type: 'separator' },
-                    { type: 'align-left', icon: 'icon-align-left' },
-                    { type: 'align-center', icon: 'icon-align-center' },
-                    { type: 'align-right', icon: 'icon-align-right' },
-                ],
-            };
-        },
-    };
+export default {
+    name: 'Toolbar',
+    data () {
+        return {
+            tools: [
+                { type: 'undo', icon: 'icon-undo' },
+                { type: 'redo', icon: 'icon-redo' },
+                { type: 'separator' },
+                { type: 'bold', icon: 'icon-bold' },
+                { type: 'italic', icon: 'icon-italic' },
+                { type: 'underline', icon: 'icon-underline' },
+                { type: 'separator' },
+                { type: 'align-left', icon: 'icon-align-left' },
+                { type: 'align-center', icon: 'icon-align-center' },
+                { type: 'align-right', icon: 'icon-align-right' },
+            ],
+        };
+    },
+};
 </script>
 
 <style scoped>
