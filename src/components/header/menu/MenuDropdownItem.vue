@@ -1,12 +1,16 @@
 <template>
   <div
-    class="rnw-menu-dropdown-item"
     v-shortkey="shortkey"
+    class="rnw-menu-dropdown-item"
     @shortkey="emitAction($event)"
     @click="emitAction($event)"
   >
-    <span class="rnw-menu-dropdown-item-label">{{ label }}</span>
-    <span class="rnw-menu-dropdown-item-shortkey">{{ shortkeyHint }}</span>
+    <span class="rnw-menu-dropdown-item-label">
+      {{ label }}
+    </span>
+    <span class="rnw-menu-dropdown-item-shortkey">
+      {{ shortkeyHint }}
+    </span>
   </div>
 </template>
 
@@ -17,18 +21,18 @@ export default {
     data () {
         return {};
     },
-    methods: {
-        emitAction: function (e) {
-            e.preventDefault();
-            this.$emit('action');
-        },
-    },
     computed: {
         shortkeyHint: function () {
             if (Array.isArray(this.shortkey)) {
                 return this.shortkey.join('+');
             }
             return '';
+        },
+    },
+    methods: {
+        emitAction: function (e) {
+            e.preventDefault();
+            this.$emit('action');
         },
     },
 };

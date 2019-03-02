@@ -2,7 +2,10 @@
   <div id="rnw-app">
     <Header />
     <Toolbar />
-    <div id="rnw-workspace" ref="workspace"></div>
+    <div
+      id="rnw-workspace"
+      ref="workspace"
+    />
   </div>
 </template>
 

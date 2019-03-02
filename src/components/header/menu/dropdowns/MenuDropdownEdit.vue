@@ -1,17 +1,32 @@
 <template>
   <MenuDropdown>
     <MenuDropdownItem
-        label="Undo"
-        :shortkey="['ctrl', 'z']"
-        @action="undo"
+      label="Undo"
+      :shortkey="['ctrl', 'z']"
+      @action="undo"
     />
-    <MenuDropdownItem label="Redo" :shortkey="['ctrl', 'y']" />
+    <MenuDropdownItem
+      label="Redo"
+      :shortkey="['ctrl', 'y']"
+    />
     <MenuDropdownSeparator />
-    <MenuDropdownItem label="Cut" :shortkey="['ctrl', 'x']" />
-    <MenuDropdownItem label="Copy" :shortkey="['ctrl', 'c']" />
-    <MenuDropdownItem label="Paste" :shortkey="['ctrl', 'p']" />
+    <MenuDropdownItem
+      label="Cut"
+      :shortkey="['ctrl', 'x']"
+    />
+    <MenuDropdownItem
+      label="Copy"
+      :shortkey="['ctrl', 'c']"
+    />
+    <MenuDropdownItem
+      label="Paste"
+      :shortkey="['ctrl', 'p']"
+    />
     <MenuDropdownSeparator />
-    <MenuDropdownItem label="Select All" :shortkey="['ctrl', 'a']" />
+    <MenuDropdownItem
+      label="Select All"
+      :shortkey="['ctrl', 'a']"
+    />
   </MenuDropdown>
 </template>
 
