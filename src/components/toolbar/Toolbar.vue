@@ -1,14 +1,14 @@
 <template>
-    <div class="rnw-toolbar">
-        <div class="rnw-toolbar-tools">
-            <div v-for="(tool, i) in tools" :key="i">
-                <div v-if="tool.type === 'separator'" class="rnw-toolbar-separator"></div>
-                <div v-else class="rnw-toolbar-tool">
-                    <i :class="tool.icon"></i>
-                </div>
-            </div>
+  <div class="rnw-toolbar">
+    <div class="rnw-toolbar-tools">
+      <div v-for="(tool, i) in tools" :key="i">
+        <div v-if="tool.type === 'separator'" class="rnw-toolbar-separator"></div>
+        <div v-else class="rnw-toolbar-tool">
+          <i :class="tool.icon"></i>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -34,36 +34,36 @@
 </script>
 
 <style scoped>
-    .rnw-toolbar {
-        height: 32px;
-        width: 100%;
-        background-color: #fafafa;
-        border-bottom: 1px solid #ccc;
-    }
+  .rnw-toolbar {
+    height: 32px;
+    width: 100%;
+    background-color: #fafafa;
+    border-bottom: 1px solid #ccc;
+  }
 
-    .rnw-toolbar-tools {
-        margin-left: 22px;
-        display: flex;
-        flex-direction: row;
-    }
+  .rnw-toolbar-tools {
+    margin-left: 22px;
+    display: flex;
+    flex-direction: row;
+  }
 
-    .rnw-toolbar-tool {
-        margin: 2px 1px;
-        padding: 2px;
-        width: 28px;
-        height: 28px;
-        border-radius: 4px;
-        color: #444;
-        cursor: pointer;
-    }
+  .rnw-toolbar-tool {
+    margin: 2px 1px;
+    padding: 4px 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    color: #444;
+    cursor: pointer;
+  }
 
-    .rnw-toolbar-tool:hover {
-        background-color: #eee;
-    }
+  .rnw-toolbar-tool:hover {
+    background-color: #eee;
+  }
 
-    .rnw-toolbar-separator {
-        border-left: 1px solid #ccc;
-        margin: 7px 5px;
-        height: 18px;
-    }
+  .rnw-toolbar-separator {
+    border-left: 1px solid #ccc;
+    margin: 7px 5px;
+    height: 18px;
+  }
 </style>
