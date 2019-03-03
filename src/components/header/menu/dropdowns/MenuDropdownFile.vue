@@ -68,24 +68,21 @@ export default {
         },
         saveJSON: function () {
             const activeInstance = this.$instances[this.activeContext];
-            const json = JSON.stringify({
+            const json = activeInstance.get('jsonExporter').getExport({
                 title: this.drawingTitle,
-                elements: activeInstance.getElements(),
-            }, null, 2);
+            });
             this.save(json, 'application/json', '.json');
         },
         handleFile: function (event) {
             const activeInstance = this.$instances[this.activeContext];
             const file = event.target.files[0];
-            const vm = this;
 
             this.readFile(file).then((res) => {
-                let imported;
+                let data;
                 switch (file.type) {
                     case 'application/json':
-                        imported = JSON.parse(res);
-                        this.$store.commit('setDrawingTitle', imported.title);
-                        activeInstance.setElements(imported.elements);
+                        data = activeInstance.get('jsonImporter').import(res);
+                        this.$store.commit('setDrawingTitle', data.title);
                         break;
                     default:
                         console.log('Unsupported MIME type'); // TODO
