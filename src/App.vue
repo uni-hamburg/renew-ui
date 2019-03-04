@@ -41,9 +41,8 @@ export default {
 };
 </script>
 
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Source+Code+Pro:400,600');
-  @import "assets/css/renew-icons.css";
+<style lang="scss">
+  @import "assets/styles/renew-ui";
 </style>
 
 <style lang="scss">
@@ -53,9 +52,6 @@ html, body, #rnw-app, .rnw-container {
   margin: 0;
 }
 #rnw-app {
-  font-family: 'Noto Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
 }
