@@ -11,7 +11,7 @@ import store from './store';
 import './assets/styles/helpers.scss';
 
 const modeler = new Modeler();
-modeler.addFormalism(new PluginBase());
+// modeler.addFormalism(new PluginBase());
 modeler.addFormalism(new PluginPT());
 
 const simulator = new Simulator();
