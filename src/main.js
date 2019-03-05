@@ -13,6 +13,8 @@ modeler.addFormalism(new PluginBase());
 modeler.addFormalism(new PluginPT());
 
 const simulator = new Simulator();
+simulator.addFormalism(new PluginBase());
+simulator.addFormalism(new PluginPT());
 
 Vue.prototype.$instances = {
     modeler,
