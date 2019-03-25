@@ -9,12 +9,12 @@ import App from './App.vue';
 import store from './store';
 
 const modeler = new Modeler();
-modeler.addFormalism(new PluginBase());
-modeler.addFormalism(new PluginPT());
+modeler.addFormalism(PluginBase);
+modeler.addFormalism(PluginPT);
 
 const simulator = new Simulator();
-simulator.addFormalism(new PluginBase());
-simulator.addFormalism(new PluginPT());
+simulator.addFormalism(PluginBase);
+simulator.addFormalism(PluginPT);
 
 Vue.prototype.$instances = {
     modeler,
