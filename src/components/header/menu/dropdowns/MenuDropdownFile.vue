@@ -76,13 +76,16 @@ export default {
         },
         savePNML: function () {
             const activeInstance = this.$instances[this.activeContext];
-            const pnmlExporter = activeInstance.get('pnmlExporter');
+            const pluginManager = activeInstance.get('metaPluginManager');
 
-            const pnml = pnmlExporter.getExport(this.drawingTitle);
+            const pnml = pluginManager.getExport('pt', {
+                title: this.drawingTitle,
+            });
             this.save(pnml, 'application/xml', '.pnml');
         },
         handleFile: function (event) {
             const activeInstance = this.$instances[this.activeContext];
+            const pluginManager = activeInstance.get('metaPluginManager');
 
             const file = event.target.files[0];
 
@@ -96,7 +99,7 @@ export default {
                         data = activeInstance.get('jsonImporter').import(res);
                         break;
                     case 'pnml':
-                        data = activeInstance.get('pnmlImporter').import(res);
+                        data = pluginManager.import('pt', res);
                         break;
                     default:
                         throw new Error('Unsupported file type.');

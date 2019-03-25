@@ -20,7 +20,7 @@
     />
     <MenuDropdownItem
       label="Paste"
-      :shortkey="['ctrl', 'p']"
+      :shortkey="['ctrl', 'v']"
     />
     <MenuDropdownSeparator />
     <MenuDropdownItem
