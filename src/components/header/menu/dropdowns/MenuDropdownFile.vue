@@ -47,6 +47,19 @@ export default {
         MenuDropdownSeparator,
     },
     computed: mapState([ 'activeContext', 'drawingTitle' ]),
+    mounted: function () {
+        Object.keys(this.$instances).forEach((instance) => {
+            this.$instances[instance].on('export.end', (context) => {
+                console.log(context);
+                // this.save(context.data, context.mimeType, context.extension);
+            });
+            this.$instances[instance].on('import.end', (context) => {
+                if (context.data && context.data.title !== undefined) {
+                    this.$store.commit('setDrawingTitle', context.data.title);
+                }
+            });
+        });
+    },
     methods: {
         open: function (fileEnding) {
             const helperElement = this.$refs.fileInputHelper;
@@ -68,6 +81,11 @@ export default {
         },
         saveJSON: function () {
             const activeInstance = this.$instances[this.activeContext];
+            // activeInstance.fire('export.json', {
+            //     additionalData: {
+            //         title: this.drawingTitle,
+            //     },
+            // });
 
             const json = activeInstance.get('jsonExporter').getExport({
                 title: this.drawingTitle,
@@ -85,7 +103,6 @@ export default {
         },
         handleFile: function (event) {
             const activeInstance = this.$instances[this.activeContext];
-            const pluginManager = activeInstance.get('metaPluginManager');
 
             const file = event.target.files[0];
 
@@ -96,16 +113,17 @@ export default {
                 let data;
                 switch (fileType) {
                     case 'json':
-                        data = activeInstance.get('jsonImporter').import(res);
+                        activeInstance.fire('import.json', { data: res });
                         break;
                     case 'pnml':
-                        data = pluginManager.import('pt', res);
+                        activeInstance.fire('import.meta', {
+                            model: 'pt',
+                            format: 'pnml',
+                            data: res,
+                        });
                         break;
                     default:
                         throw new Error('Unsupported file type.');
-                }
-                if (data && data.title) {
-                    this.$store.commit('setDrawingTitle', data.title);
                 }
             }).catch((err) => {
                 alert(err); // TODO error modal
