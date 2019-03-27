@@ -50,8 +50,11 @@ export default {
     mounted: function () {
         Object.keys(this.$instances).forEach((instance) => {
             this.$instances[instance].on('export.end', (context) => {
-                console.log(context);
-                // this.save(context.data, context.mimeType, context.extension);
+                this.save(
+                    context.payload,
+                    context.mimeType,
+                    context.fileExtension
+                );
             });
             this.$instances[instance].on('import.end', (context) => {
                 if (context.data && context.data.title !== undefined) {
@@ -61,45 +64,41 @@ export default {
         });
     },
     methods: {
-        open: function (fileEnding) {
+        open: function (fileExtension) {
             const helperElement = this.$refs.fileInputHelper;
 
             helperElement.setAttribute('accept', '.json,.pnml');
             helperElement.click();
         },
-        save: function (content, mimeType, fileEnding) {
-            content = encodeURIComponent(content);
+        save: function (payload, mimeType, fileExtension) {
+            payload = encodeURIComponent(payload);
 
             const title = this.drawingTitle || 'Untitled_Drawing';
             const fileName = title.replace(/\s+/g, '_').replace(/\W+/g, '');
-            const href = 'data:' + mimeType + ';charset=utf-8,' + content;
+            const href = 'data:' + mimeType + ';charset=utf-8,' + payload;
             const helperElement = this.$refs.fileOutputHelper;
 
             helperElement.setAttribute('href', href);
-            helperElement.setAttribute('download', fileName + fileEnding);
+            helperElement.setAttribute('download', fileName + fileExtension);
             helperElement.click();
         },
         saveJSON: function () {
             const activeInstance = this.$instances[this.activeContext];
-            // activeInstance.fire('export.json', {
-            //     additionalData: {
-            //         title: this.drawingTitle,
-            //     },
-            // });
-
-            const json = activeInstance.get('jsonExporter').getExport({
-                title: this.drawingTitle,
+            activeInstance.fire('export.json', {
+                additionalData: {
+                    title: this.drawingTitle,
+                },
             });
-            this.save(json, 'application/json', '.json');
         },
         savePNML: function () {
             const activeInstance = this.$instances[this.activeContext];
-            const pluginManager = activeInstance.get('metaPluginManager');
-
-            const pnml = pluginManager.getExport('pt', {
-                title: this.drawingTitle,
+            activeInstance.fire('export.meta', {
+                model: 'pt',
+                format: 'pnml',
+                additionalData: {
+                    title: this.drawingTitle,
+                },
             });
-            this.save(pnml, 'application/xml', '.pnml');
         },
         handleFile: function (event) {
             const activeInstance = this.$instances[this.activeContext];
