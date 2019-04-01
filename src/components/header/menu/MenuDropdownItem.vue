@@ -17,7 +17,7 @@
 <script>
 export default {
     name: 'MenuDropdownItem',
-    props: ['label', 'shortkey'],
+    props: [ 'label', 'shortkey' ],
     data () {
         return {};
     },

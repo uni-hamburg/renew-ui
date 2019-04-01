@@ -64,7 +64,7 @@ export default {
         });
     },
     methods: {
-        open: function (fileExtension) {
+        open: function () {
             const helperElement = this.$refs.fileInputHelper;
 
             helperElement.setAttribute('accept', '.json,.pnml');
@@ -109,7 +109,6 @@ export default {
             const fileType = file.name.split('.').slice(-1)[0];
 
             this.readFile(file).then((res) => {
-                let data;
                 switch (fileType) {
                     case 'json':
                         activeInstance.fire('import.json', { data: res });

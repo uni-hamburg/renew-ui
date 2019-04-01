@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'MenuBarItem',
-    props: ['item', 'isActive'],
+    props: [ 'item', 'isActive' ],
     methods: {
         handleClick: function (e) {
             e.preventDefault();

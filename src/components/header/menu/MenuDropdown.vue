@@ -10,7 +10,7 @@
 <script>
 export default {
     name: 'MenuDropdown',
-    props: ['isActive'],
+    props: [ 'isActive' ],
 };
 </script>
 
