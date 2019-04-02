@@ -38,7 +38,7 @@ export default {
     components: {
         MenuBarItem,
     },
-    props: ['drawing'],
+    props: [ 'drawing' ],
     data () {
         return {
             menuBarItems,

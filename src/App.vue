@@ -25,7 +25,7 @@ export default {
         Toolbar,
         Header,
     },
-    computed: mapState(['activeContext']),
+    computed: mapState([ 'activeContext' ]),
     watch: {
         activeContext: function (context) {
             if (this.$context) {
