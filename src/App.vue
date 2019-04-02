@@ -10,9 +10,6 @@
 </template>
 
 <script>
-import { Modeler, Simulator } from 'renew-lib';
-import PluginBase from 'renew-formalism-base';
-import PluginPT from 'renew-formalism-pt';
 import { mapState } from 'vuex';
 
 import Header from './components/header/Header';
