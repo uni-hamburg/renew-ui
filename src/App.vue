@@ -10,10 +10,14 @@
 </template>
 
 <script>
+import { Modeler, Simulator } from 'renew-lib';
+import PluginBase from 'renew-formalism-base';
+import PluginPT from 'renew-formalism-pt';
 import { mapState } from 'vuex';
 
 import Header from './components/header/Header';
 import Toolbar from './components/toolbar/Toolbar';
+
 
 export const contexts = {
     modeling: 'modeler',
@@ -28,11 +32,11 @@ export default {
     computed: mapState([ 'activeContext' ]),
     watch: {
         activeContext: function (context) {
-            if (this.$context) {
-                this.$context.detach();
+            if (this.$activeInstance) {
+                this.$activeInstance.detach();
             }
-            this.$context = this.$instances[context];
-            this.$context.attachTo(this.$refs.workspace);
+            this.$activeInstance = this.$instances[context];
+            this.$activeInstance.attachTo(this.$refs.workspace);
         },
     },
     mounted: function () {
@@ -58,7 +62,7 @@ html, body, #rnw-app, .rnw-container {
 #rnw-workspace {
   flex-grow: 1;
 }
-#rnw-simulation .djs-container {
+#rnw-simulator .djs-container {
   background-color: lavender;
 }
 </style>
