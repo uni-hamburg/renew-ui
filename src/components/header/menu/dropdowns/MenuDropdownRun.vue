@@ -40,7 +40,7 @@ export default {
         const modelerInstance = this.$instances[contexts.modeling];
         const simulatorInstance = this.$instances[contexts.simulating];
 
-        simulatorInstance.on('attached', () => {
+        simulatorInstance.on('attach.after', () => {
             const data = modelerInstance.get('exporter').getExport();
             if (!data.elements || !data.elements.length) {
                 // TODO use statusbar for this
