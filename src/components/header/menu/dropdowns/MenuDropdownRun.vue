@@ -15,22 +15,40 @@
     />
     <MenuDropdownItem
       label="Stop Simulation"
-      :shortkey="['ctrl', 't']"
+      :shortkey="['ctrl', 'alt', 't']"
       @action="stopSimulation"
     />
   </MenuDropdown>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import { contexts } from '../../../../App.vue';
 import MenuDropdown from '../MenuDropdown';
 import MenuDropdownItem from '../MenuDropdownItem';
+
 
 export default {
     name: 'MenuDropdownView',
     components: {
         MenuDropdown,
         MenuDropdownItem,
+    },
+    computed: mapState([ 'activeContext' ]),
+    mounted: function () {
+        const modelerInstance = this.$instances[contexts.modeling];
+        const simulatorInstance = this.$instances[contexts.simulating];
+
+        simulatorInstance.on('attach.end', () => {
+            const data = modelerInstance.get('exporter').getExport();
+            if (!data.elements || !data.elements.length) {
+                // TODO use statusbar for this
+                alert('Nothing to simulate.');
+                return;
+            }
+            simulatorInstance.fire('import', { data }, true);
+        });
     },
     methods: {
         runSimulation: function () {

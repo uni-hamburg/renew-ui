@@ -28,4 +28,4 @@ Vue.config.productionTip = false;
 window.vm = new Vue({
     store,
     render: (h) => h(App),
-}).$mount('#app');
+}).$mount('#rnw-app');
