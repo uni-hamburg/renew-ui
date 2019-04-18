@@ -20,6 +20,11 @@
       :shortkey="['ctrl', 'shift', 's']"
       @action="savePNML"
     />
+    <MenuDropdownSeparator />
+    <MenuDropdownItem
+      label="Export Graphics…"
+      @action="saveSVG"
+    />
     <input
       ref="fileInputHelper"
       type="file"
@@ -49,14 +54,14 @@ export default {
     computed: mapState([ 'activeContext', 'drawingTitle' ]),
     mounted: function () {
         Object.keys(this.$instances).forEach((instance) => {
-            this.$instances[instance].on('export.end', (context) => {
+            this.$instances[instance].on('export', (context) => {
                 this.save(
                     context.payload,
                     context.mimeType,
                     context.fileExtension
                 );
             });
-            this.$instances[instance].on('import.end', (context) => {
+            this.$instances[instance].on('import', (context) => {
                 if (context.data && context.data.title !== undefined) {
                     this.$store.commit('setDrawingTitle', context.data.title);
                 }
@@ -99,6 +104,10 @@ export default {
                     title: this.drawingTitle,
                 },
             });
+        },
+        saveSVG: function () {
+            const activeInstance = this.$instances[this.activeContext];
+            activeInstance.fire('export.svg');
         },
         handleFile: function (event) {
             const activeInstance = this.$instances[this.activeContext];
