@@ -3,6 +3,7 @@
     <MenuDropdownItem
       label="New Drawing…"
       :shortkey="['ctrl', 'n']"
+      @action="newDrawing"
     />
     <MenuDropdownItem
       label="Open Drawing…"
@@ -39,6 +40,11 @@
 </template>
 
 <script>
+import PluginBase from 'renew-formalism-base/src/core/PluginBase';
+import PluginPT from 'renew-formalism-pt/src/core/PluginPT';
+import Modeler from 'renew-lib/src/Modeler';
+import Simulator from 'renew-lib/src/Simulator';
+import { contexts } from '../../../../App.vue';
 import { mapState } from 'vuex';
 import MenuDropdown from '../MenuDropdown';
 import MenuDropdownItem from '../MenuDropdownItem';
@@ -69,6 +75,19 @@ export default {
         });
     },
     methods: {
+        newDrawing () {
+            this.$instances.modeler = new Modeler();
+            this.$instances.modeler.addFormalism(PluginBase);
+            this.$instances.modeler.addFormalism(PluginPT);
+            this.$instances.simulator = new Simulator();
+            this.$instances.simulator.addFormalism(PluginBase);
+            this.$instances.simulator.addFormalism(PluginPT);
+
+            this.$store.commit('setActiveContext');
+            setTimeout(() => {
+                this.$store.commit('setActiveContext', contexts.modeling);
+            }, 0);
+        },
         open: function () {
             const helperElement = this.$refs.fileInputHelper;
 
