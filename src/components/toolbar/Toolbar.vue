@@ -12,6 +12,7 @@
         <div
           v-else
           class="rnw-toolbar-tool"
+          @click="tool.action"
         >
           <i :class="tool.icon" />
         </div>
@@ -21,24 +22,48 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
+
 export default {
     name: 'Toolbar',
     data () {
         return {
             tools: [
-                { type: 'undo', icon: 'icon-undo' },
-                { type: 'redo', icon: 'icon-redo' },
-                { type: 'separator' },
-                { type: 'bold', icon: 'icon-bold' },
-                { type: 'italic', icon: 'icon-italic' },
-                { type: 'underline', icon: 'icon-underline' },
-                { type: 'separator' },
-                { type: 'align-left', icon: 'icon-align-left' },
-                { type: 'align-center', icon: 'icon-align-center' },
-                { type: 'align-right', icon: 'icon-align-right' },
+                { type: 'undo', icon: 'icon-undo', action: this.undoCommand },
+                { type: 'redo', icon: 'icon-redo', action: this.redoCommand },
+                { type: 'separator', action: () => {} },
+                { type: 'bold', icon: 'icon-bold', action: () => {} },
+                { type: 'italic', icon: 'icon-italic', action: () => {} },
+                { type: 'underline', icon: 'icon-underline', action: () => {} },
+                { type: 'separator', action: () => {} },
+                {
+                    type: 'align-left',
+                    icon: 'icon-align-left',
+                    action: () => {},
+                },
+                {
+                    type: 'align-center',
+                    icon: 'icon-align-center',
+                    action: () => {},
+                },
+                {
+                    type: 'align-right',
+                    icon: 'icon-align-right',
+                    action: () => {},
+                },
             ],
         };
     },
+    computed: mapState([ 'activeContext' ]),
+    methods: {
+        undoCommand () {
+            this.$instances[this.activeContext].fire('command.undo');
+        },
+        redoCommand () {
+            this.$instances[this.activeContext].fire('command.redo');
+        },
+    }
 };
 </script>
 
