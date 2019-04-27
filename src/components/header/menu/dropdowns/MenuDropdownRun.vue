@@ -8,10 +8,12 @@
     <MenuDropdownItem
       label="Simulation Step"
       :shortkey="['ctrl', 'i']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Halt Simulation"
       :shortkey="['ctrl', 'h']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Stop Simulation"
