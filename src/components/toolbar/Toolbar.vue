@@ -12,6 +12,7 @@
         <div
           v-else
           class="rnw-toolbar-tool"
+          @click="tool.action"
           :class="{ 'disabled': tool.disabled }"
         >
           <i :class="tool.icon" />
@@ -22,6 +23,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
+
 export default {
     name: 'Toolbar',
     data () {
@@ -30,47 +34,62 @@ export default {
                 {
                     type: 'undo',
                     icon: 'icon-undo',
-                    disabled: true,
+                    action: this.undoCommand,
                 },
                 {
                     type: 'redo',
                     icon: 'icon-redo',
-                    disabled: true,
+                    action: this.redoCommand,
                 },
                 { type: 'separator' },
                 {
                     type: 'bold',
                     icon: 'icon-bold',
+                    action: () => {},
                     disabled: true,
                 },
                 {
                     type: 'italic',
                     icon: 'icon-italic',
+                    action: () => {},
                     disabled: true,
                 },
                 {
                     type: 'underline',
                     icon: 'icon-underline',
+                    action: () => {},
                     disabled: true,
                 },
                 { type: 'separator' },
                 {
                     type: 'align-left',
                     icon: 'icon-align-left',
+                    action: () => {},
                     disabled: true,
                 },
                 {
                     type: 'align-center',
                     icon: 'icon-align-center',
+                    action: () => {},
                     disabled: true,
                 },
                 {
                     type: 'align-right',
                     icon: 'icon-align-right',
+                    action: () => {},
                     disabled: true,
                 },
             ],
         };
+    },
+    computed: mapState([ 'activeContext' ]),
+    methods: {
+        undoCommand () {
+            this.$instances[this.activeContext].fire('command.undo');
+        },
+        redoCommand () {
+            this.$instances[this.activeContext].fire('command.redo');
+        },
     },
 };
 </script>

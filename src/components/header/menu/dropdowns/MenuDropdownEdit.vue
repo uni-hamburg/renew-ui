@@ -3,11 +3,12 @@
     <MenuDropdownItem
       label="Undo"
       :shortkey="['ctrl', 'z']"
-      @action="undo"
+      @action="undoCommand"
     />
     <MenuDropdownItem
       label="Redo"
       :shortkey="['ctrl', 'y']"
+      @action="redoCommand"
     />
     <MenuDropdownSeparator />
     <MenuDropdownItem
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import MenuDropdown from '../MenuDropdown';
 import MenuDropdownItem from '../MenuDropdownItem';
 import MenuDropdownSeparator from '../MenuDropdownSeparator';
@@ -46,9 +48,13 @@ export default {
         MenuDropdownItem,
         MenuDropdownSeparator,
     },
+    computed: mapState([ 'activeContext' ]),
     methods: {
-        undo: function () {
-            console.log('undo');
+        undoCommand () {
+            this.$instances[this.activeContext].fire('command.undo');
+        },
+        redoCommand () {
+            this.$instances[this.activeContext].fire('command.redo');
         },
         selectAll () {
             this.$instances.modeler.fire('select.all');
