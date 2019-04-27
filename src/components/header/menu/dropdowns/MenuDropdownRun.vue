@@ -5,14 +5,16 @@
       :shortkey="['ctrl', 'r']"
       @action="runSimulation"
     />
-    <!--MenuDropdownItem
+    <MenuDropdownItem
       label="Simulation Step"
       :shortkey="['ctrl', 'i']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Halt Simulation"
       :shortkey="['ctrl', 'h']"
-    /-->
+      disabled="true"
+    />
     <MenuDropdownItem
       label="Stop Simulation"
       :shortkey="['ctrl', 'alt', 't']"

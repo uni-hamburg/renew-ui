@@ -13,14 +13,17 @@
     <MenuDropdownItem
       label="Cut"
       :shortkey="['ctrl', 'x']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Copy"
       :shortkey="['ctrl', 'c']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Paste"
       :shortkey="['ctrl', 'v']"
+      disabled="true"
     />
     <MenuDropdownSeparator />
     <MenuDropdownItem

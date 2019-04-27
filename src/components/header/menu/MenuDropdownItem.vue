@@ -2,6 +2,7 @@
   <div
     v-shortkey="shortkey"
     class="rnw-menu-dropdown-item"
+    :class="{ 'rnw-menu-dropdown-item-disabled': disabled }"
     @shortkey="emitAction($event)"
     @click="emitAction($event)"
   >
@@ -17,7 +18,7 @@
 <script>
 export default {
     name: 'MenuDropdownItem',
-    props: [ 'label', 'shortkey' ],
+    props: [ 'label', 'shortkey', 'disabled' ],
     data () {
         return {};
     },
@@ -63,5 +64,10 @@ export default {
   color: #999;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.rnw-menu-dropdown-item-disabled {
+  pointer-events: none;
+  color: #999;
 }
 </style>
