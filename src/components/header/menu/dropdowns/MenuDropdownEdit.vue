@@ -26,6 +26,7 @@
     <MenuDropdownItem
       label="Select All"
       :shortkey="['ctrl', 'a']"
+      @action="selectAll"
     />
   </MenuDropdown>
 </template>
@@ -45,6 +46,9 @@ export default {
     methods: {
         undo: function () {
             console.log('undo');
+        },
+        selectAll () {
+            this.$instances.modeler.fire('select.all');
         },
     },
 };
