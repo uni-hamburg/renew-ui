@@ -12,6 +12,7 @@
         <div
           v-else
           class="rnw-toolbar-tool"
+          :class="{ 'disabled': tool.disabled }"
         >
           <i :class="tool.icon" />
         </div>
@@ -26,16 +27,48 @@ export default {
     data () {
         return {
             tools: [
-                { type: 'undo', icon: 'icon-undo' },
-                { type: 'redo', icon: 'icon-redo' },
+                {
+                    type: 'undo',
+                    icon: 'icon-undo',
+                    disabled: true,
+                },
+                {
+                    type: 'redo',
+                    icon: 'icon-redo',
+                    disabled: true,
+                },
                 { type: 'separator' },
-                { type: 'bold', icon: 'icon-bold' },
-                { type: 'italic', icon: 'icon-italic' },
-                { type: 'underline', icon: 'icon-underline' },
+                {
+                    type: 'bold',
+                    icon: 'icon-bold',
+                    disabled: true,
+                },
+                {
+                    type: 'italic',
+                    icon: 'icon-italic',
+                    disabled: true,
+                },
+                {
+                    type: 'underline',
+                    icon: 'icon-underline',
+                    disabled: true,
+                },
                 { type: 'separator' },
-                { type: 'align-left', icon: 'icon-align-left' },
-                { type: 'align-center', icon: 'icon-align-center' },
-                { type: 'align-right', icon: 'icon-align-right' },
+                {
+                    type: 'align-left',
+                    icon: 'icon-align-left',
+                    disabled: true,
+                },
+                {
+                    type: 'align-center',
+                    icon: 'icon-align-center',
+                    disabled: true,
+                },
+                {
+                    type: 'align-right',
+                    icon: 'icon-align-right',
+                    disabled: true,
+                },
             ],
         };
     },
@@ -74,5 +107,9 @@ export default {
     border-left: 1px solid #ccc;
     margin: 7px 5px;
     height: 18px;
+  }
+  .disabled {
+    pointer-events: none;
+    color: #999;
   }
 </style>
