@@ -14,19 +14,23 @@
     <MenuDropdownItem
       label="Cut"
       :shortkey="['ctrl', 'x']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Copy"
       :shortkey="['ctrl', 'c']"
+      disabled="true"
     />
     <MenuDropdownItem
       label="Paste"
       :shortkey="['ctrl', 'v']"
+      disabled="true"
     />
     <MenuDropdownSeparator />
     <MenuDropdownItem
       label="Select All"
       :shortkey="['ctrl', 'a']"
+      @action="selectAll"
     />
   </MenuDropdown>
 </template>
@@ -51,6 +55,9 @@ export default {
         },
         redoCommand () {
             this.$instances[this.activeContext].fire('command.redo');
+        },
+        selectAll () {
+            this.$instances.modeler.fire('select.all');
         },
     },
 };
