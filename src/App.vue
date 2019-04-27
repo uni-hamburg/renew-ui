@@ -33,7 +33,9 @@ export default {
                 this.$activeInstance.detach();
             }
             this.$activeInstance = this.$instances[context];
-            this.$activeInstance.attachTo(this.$refs.workspace);
+            if (this.$activeInstance) {
+                this.$activeInstance.attachTo(this.$refs.workspace);
+            }
         },
     },
     mounted: function () {
