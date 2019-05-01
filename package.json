@@ -7,10 +7,12 @@
     "lint": "vue-cli-service lint --fix",
     "test": "vue-cli-service test:unit"
   },
+  "license": "MIT",
+  "repository": "https://github.com/renew-js/renew-ui",
   "dependencies": {
-    "renew-formalism-base": "git+https://github.com/renew-js/renew-formalism-base.git",
-    "renew-formalism-pt": "git+https://github.com/renew-js/renew-formalism-pt.git",
-    "renew-lib": "git+https://github.com/renew-js/renew-lib.git",
+    "renew-formalism-base": "^1.0.0",
+    "renew-formalism-pt": "^1.0.0",
+    "renew-lib": "^1.0.0",
     "vue": "^2.6.8",
     "vue-shortkey": "^3.1.6",
     "vuex": "^3.1.0"
@@ -26,7 +28,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.15.0",
     "eslint-config-google": "^0.11.0",
-    "eslint-config-renew": "git+https://github.com/renew-js/eslint-config-renew.git",
+    "eslint-config-renew": "^1.0.0",
     "eslint-plugin-vue": "^5.2.2",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
