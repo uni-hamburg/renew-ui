@@ -20,6 +20,14 @@
       :shortkey="['ctrl', 'alt', 't']"
       @action="stopSimulation"
     />
+    <MenuDropdownSeparator
+      v-if="simulators && simulators.length"
+    />
+    <MenuDropdownItem
+      v-for="simulator in simulators"
+      :key="simulator.id"
+      :label="simulator.name"
+    />
   </MenuDropdown>
 </template>
 
@@ -29,6 +37,7 @@ import { mapState } from 'vuex';
 import { contexts } from '../../../../App.vue';
 import MenuDropdown from '../MenuDropdown';
 import MenuDropdownItem from '../MenuDropdownItem';
+import MenuDropdownSeparator from '../MenuDropdownSeparator';
 
 
 export default {
@@ -36,11 +45,19 @@ export default {
     components: {
         MenuDropdown,
         MenuDropdownItem,
+        MenuDropdownSeparator,
     },
-    computed: mapState([ 'activeContext' ]),
+    computed: mapState([
+        'activeContext',
+        'simulators',
+    ]),
     mounted: function () {
         const modelerInstance = this.$instances[contexts.modeling];
         const simulatorInstance = this.$instances[contexts.simulating];
+
+        simulatorInstance.on('simulators.updated', (context) => {
+            this.$store.commit('setSimulators', context.simulators);
+        });
 
         simulatorInstance.on('attach.end', () => {
             const data = modelerInstance.get('exporter').getExport();

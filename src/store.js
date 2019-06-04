@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         activeContext: null,
         drawingTitle: null,
+        simulators: [],
     },
     mutations: {
         setActiveContext: function (state, context) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
         },
         setDrawingTitle: function (state, title) {
             state.drawingTitle = title;
+        },
+        setSimulators: function (state, simulators) {
+            state.simulators = simulators;
         },
     },
     actions: {
