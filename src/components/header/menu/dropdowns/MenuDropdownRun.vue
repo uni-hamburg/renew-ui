@@ -21,12 +21,12 @@
       @action="stopSimulation"
     />
     <MenuDropdownSeparator
-      v-if="simulators && simulators.length"
+      v-if="formalisms && formalisms.length"
     />
     <MenuDropdownItem
-      v-for="simulator in simulators"
-      :key="simulator.id"
-      :label="simulator.name"
+      v-for="formalism in formalisms"
+      :key="formalism.id"
+      :label="formalism.name"
     />
   </MenuDropdown>
 </template>
@@ -49,14 +49,14 @@ export default {
     },
     computed: mapState([
         'activeContext',
-        'simulators',
+        'formalisms',
     ]),
     mounted: function () {
         const modelerInstance = this.$instances[contexts.modeling];
         const simulatorInstance = this.$instances[contexts.simulating];
 
-        simulatorInstance.on('simulators.updated', (context) => {
-            this.$store.commit('setSimulators', context.simulators);
+        simulatorInstance.on('formalisms.updated', (context) => {
+            this.$store.commit('setFormalisms', context.formalisms);
         });
 
         simulatorInstance.on('attach.end', () => {
