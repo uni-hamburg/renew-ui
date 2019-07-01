@@ -27,6 +27,8 @@
       v-for="formalism in formalisms"
       :key="formalism.id"
       :label="formalism.name"
+      :icon="(formalism.id === activeFormalism) ? '✔' : ''"
+      @action="activateFormalism(formalism.id)"
     />
   </MenuDropdown>
 </template>
@@ -50,13 +52,19 @@ export default {
     computed: mapState([
         'activeContext',
         'formalisms',
+        'activeFormalism',
     ]),
     mounted: function () {
         const modelerInstance = this.$instances[contexts.modeling];
         const simulatorInstance = this.$instances[contexts.simulating];
 
-        simulatorInstance.on('formalisms.updated', (context) => {
-            this.$store.commit('setFormalisms', context.formalisms);
+        simulatorInstance.on('formalisms.update', (context) => {
+            // Make a copy so the object doesn't get reactive
+            const formalisms = JSON.parse(JSON.stringify(context.formalisms));
+            this.$store.commit('setFormalisms', formalisms);
+            if (!this.activeFormalism) {
+                this.activateFormalism(formalisms[0].id);
+            }
         });
 
         simulatorInstance.on('attach.end', () => {
@@ -67,6 +75,10 @@ export default {
                 return;
             }
             simulatorInstance.fire('import', { data }, true);
+            simulatorInstance.fire('simulation.start', {
+                data,
+                formalismId: this.activeFormalism,
+            });
         });
     },
     methods: {
@@ -75,6 +87,9 @@ export default {
         },
         stopSimulation: function () {
             this.$store.commit('setActiveContext', contexts.modeling);
+        },
+        activateFormalism: function (formalismId) {
+            this.$store.commit('setActiveFormalism', formalismId);
         },
     },
 };

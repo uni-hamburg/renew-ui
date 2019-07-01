@@ -8,6 +8,7 @@ export default new Vuex.Store({
         activeContext: null,
         drawingTitle: null,
         formalisms: [],
+        activeFormalism: null,
     },
     mutations: {
         setActiveContext: function (state, context) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
         },
         setFormalisms: function (state, formalisms) {
             state.formalisms = formalisms;
+        },
+        setActiveFormalism: function (state, formalism) {
+            state.activeFormalism = formalism;
         },
     },
     actions: {
