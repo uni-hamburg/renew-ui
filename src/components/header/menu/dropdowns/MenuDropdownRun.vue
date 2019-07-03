@@ -8,16 +8,18 @@
     <MenuDropdownItem
       label="Simulation Step"
       :shortkey="['ctrl', 'i']"
-      disabled="true"
+      :disabled="!isSimulating"
+      @action="step"
     />
     <MenuDropdownItem
       label="Halt Simulation"
       :shortkey="['ctrl', 'h']"
-      disabled="true"
+      :disabled="!isSimulating"
     />
     <MenuDropdownItem
       label="Stop Simulation"
       :shortkey="['ctrl', 'alt', 't']"
+      :disabled="!isSimulating"
       @action="stopSimulation"
     />
     <MenuDropdownSeparator
@@ -28,6 +30,7 @@
       :key="formalism.id"
       :label="formalism.name"
       :icon="(formalism.id === activeFormalism) ? '✔' : ''"
+      :disabled="isSimulating"
       @action="activateFormalism(formalism.id)"
     />
   </MenuDropdown>
@@ -49,16 +52,21 @@ export default {
         MenuDropdownItem,
         MenuDropdownSeparator,
     },
-    computed: mapState([
-        'activeContext',
-        'formalisms',
-        'activeFormalism',
-    ]),
+    computed: {
+        ...mapState([
+            'activeContext',
+            'formalisms',
+            'activeFormalism',
+        ]),
+        isSimulating: function () {
+            return this.activeContext === contexts.simulating;
+        },
+    },
     mounted: function () {
         const modelerInstance = this.$instances[contexts.modeling];
         const simulatorInstance = this.$instances[contexts.simulating];
 
-        simulatorInstance.on('formalisms.update', (context) => {
+        simulatorInstance.on('formalism.update', (context) => {
             // Make a copy so the object doesn't get reactive
             const formalisms = JSON.parse(JSON.stringify(context.formalisms));
             this.$store.commit('setFormalisms', formalisms);
@@ -74,6 +82,7 @@ export default {
                 alert('Nothing to simulate.');
                 return;
             }
+            // console.log(JSON.stringify(JSON.stringify(data));
             simulatorInstance.fire('import', { data }, true);
             simulatorInstance.fire('simulation.start', {
                 data,
@@ -82,14 +91,17 @@ export default {
         });
     },
     methods: {
+        activateFormalism: function (formalismId) {
+            this.$store.commit('setActiveFormalism', formalismId);
+        },
         runSimulation: function () {
             this.$store.commit('setActiveContext', contexts.simulating);
         },
         stopSimulation: function () {
             this.$store.commit('setActiveContext', contexts.modeling);
         },
-        activateFormalism: function (formalismId) {
-            this.$store.commit('setActiveFormalism', formalismId);
+        step: function () {
+            this.$instances[contexts.simulating].fire('simulation.step');
         },
     },
 };
