@@ -3,6 +3,7 @@
     <MenuDropdownItem
       label="Run Simulation"
       :shortkey="['ctrl', 'r']"
+      :disabled="!formalisms || !formalisms.length"
       @action="runSimulation"
     />
     <MenuDropdownItem
@@ -15,12 +16,13 @@
       label="Halt Simulation"
       :shortkey="['ctrl', 'h']"
       :disabled="!isSimulating"
+      @action="haltSimulation"
     />
     <MenuDropdownItem
-      label="Stop Simulation"
+      label="Terminate Simulation"
       :shortkey="['ctrl', 'alt', 't']"
       :disabled="!isSimulating"
-      @action="stopSimulation"
+      @action="terminateSimulation"
     />
     <MenuDropdownSeparator
       v-if="formalisms && formalisms.length"
@@ -82,7 +84,6 @@ export default {
                 alert('Nothing to simulate.');
                 return;
             }
-            // console.log(JSON.stringify(JSON.stringify(data));
             simulatorInstance.fire('import', { data }, true);
             simulatorInstance.fire('simulation.start', {
                 data,
@@ -97,8 +98,12 @@ export default {
         runSimulation: function () {
             this.$store.commit('setActiveContext', contexts.simulating);
         },
-        stopSimulation: function () {
+        terminateSimulation: function () {
             this.$store.commit('setActiveContext', contexts.modeling);
+            this.$instances[contexts.simulating].fire('simulation.terminate');
+        },
+        haltSimulation: function () {
+            this.$instances[contexts.simulating].fire('simulation.stop');
         },
         step: function () {
             this.$instances[contexts.simulating].fire('simulation.step');
