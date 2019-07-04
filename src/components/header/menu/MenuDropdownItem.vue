@@ -41,7 +41,9 @@ export default {
     methods: {
         emitAction: function (e) {
             e.preventDefault();
-            this.$emit('action');
+            if (!this.disabled) {
+                this.$emit('action');
+            }
         },
     },
 };
