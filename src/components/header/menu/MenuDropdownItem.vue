@@ -6,6 +6,9 @@
     @shortkey="emitAction($event)"
     @click="emitAction($event)"
   >
+    <span class="rnw-menu-dropdown-item-icon">
+      {{ icon }}
+    </span>
     <span class="rnw-menu-dropdown-item-label">
       {{ label }}
     </span>
@@ -18,7 +21,12 @@
 <script>
 export default {
     name: 'MenuDropdownItem',
-    props: [ 'label', 'shortkey', 'disabled' ],
+    props: [
+        'label',
+        'icon',
+        'shortkey',
+        'disabled',
+    ],
     data () {
         return {};
     },
@@ -33,7 +41,9 @@ export default {
     methods: {
         emitAction: function (e) {
             e.preventDefault();
-            this.$emit('action');
+            if (!this.disabled) {
+                this.$emit('action');
+            }
         },
     },
 };
@@ -44,7 +54,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 6px 16px 6px 38px;
+  padding: 6px 16px;
   cursor: pointer;
   white-space: nowrap;
   color: #333;
@@ -56,6 +66,15 @@ export default {
   &:hover, &:active, &.active {
     background-color: #eee;
   }
+}
+.rnw-menu-dropdown-item-icon {
+  flex-shrink: 0;
+  width: 22px;
+  padding-right: 6px;
+  text-align: center;
+}
+.rnw-menu-dropdown-item-label {
+  flex-grow: 1;
 }
 .rnw-menu-dropdown-item-shortkey {
   font-family: 'Source Code Pro', monospace;
