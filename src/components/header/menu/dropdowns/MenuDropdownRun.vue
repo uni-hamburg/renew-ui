@@ -84,7 +84,9 @@ export default {
                 alert('Nothing to simulate.');
                 return;
             }
-            simulatorInstance.fire('import', { data }, true);
+            simulatorInstance.fire('import', {
+                data: JSON.parse(JSON.stringify(data)),
+            }, true);
             simulatorInstance.fire('simulation.init', {
                 data,
                 formalismId: this.activeFormalism,
