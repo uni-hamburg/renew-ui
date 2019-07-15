@@ -84,8 +84,10 @@ export default {
                 alert('Nothing to simulate.');
                 return;
             }
-            simulatorInstance.fire('import', { data }, true);
-            simulatorInstance.fire('simulation.start', {
+            simulatorInstance.fire('import', {
+                data: JSON.parse(JSON.stringify(data)),
+            }, true);
+            simulatorInstance.fire('simulation.init', {
                 data,
                 formalismId: this.activeFormalism,
             });
@@ -96,7 +98,11 @@ export default {
             this.$store.commit('setActiveFormalism', formalismId);
         },
         runSimulation: function () {
-            this.$store.commit('setActiveContext', contexts.simulating);
+            if (this.activeContext !== contexts.simulating) {
+                this.$store.commit('setActiveContext', contexts.simulating);
+            } else {
+                this.$instances[contexts.simulating].fire('simulation.start');
+            }
         },
         terminateSimulation: function () {
             this.$store.commit('setActiveContext', contexts.modeling);
