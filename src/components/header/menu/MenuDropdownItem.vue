@@ -21,12 +21,24 @@
 <script>
 export default {
     name: 'MenuDropdownItem',
-    props: [
-        'label',
-        'icon',
-        'shortkey',
-        'disabled',
-    ],
+    props: {
+        label: {
+            type: String,
+            required: true,
+        },
+        icon: {
+            type: String,
+            required: true,
+        },
+        shortkey: {
+            type: [ String, Array ],
+            required: true,
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data () {
         return {};
     },
