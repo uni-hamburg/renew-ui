@@ -30,10 +30,16 @@
     "eslint-config-google": "^0.11.0",
     "eslint-config-renew": "^1.0.0",
     "eslint-plugin-vue": "^5.2.2",
+    "husky": "^3.0.9",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "travis-weigh-in": "^1.0.2",
     "vue-template-compiler": "^2.6.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "eslintConfig": {
     "root": true,
