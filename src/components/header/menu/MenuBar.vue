@@ -19,10 +19,12 @@ import MenuDropdownView from './dropdowns/MenuDropdownView';
 import MenuDropdownRun from './dropdowns/MenuDropdownRun';
 import MenuDropdownHelp from './dropdowns/MenuDropdownHelp';
 import MenuDropdownWindow from './dropdowns/MenuDropdownWindow';
+import MenuDropdownAttributes from './dropdowns/MenuDropdownAttributes';
 
 const menuBarItems = [
     { id: 'file', label: 'File', dropdown: MenuDropdownFile },
     { id: 'edit', label: 'Edit', dropdown: MenuDropdownEdit },
+    { id: 'attributes', label: 'Attributes', dropdown: MenuDropdownAttributes },
     { id: 'view', label: 'View', dropdown: MenuDropdownView },
     //    { id: 'layout', label: 'Layout' },
     //    { id: 'attributes', label: 'Attributes' },
