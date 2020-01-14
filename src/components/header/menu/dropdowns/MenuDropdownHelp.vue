@@ -1,6 +1,9 @@
 <template>
   <MenuDropdown>
-    <MenuDropdownItem label="About" @action="openHelp" />
+    <MenuDropdownItem
+      label="About"
+      @action="openHelp"
+    />
   </MenuDropdown>
 </template>
 
@@ -18,8 +21,8 @@ export default {
         openHelp () {
             const url = 'https://github.com/renew-js/renew-js';
             window.open(url, '_blank').focus();
-        }
-    }
+        },
+    },
 };
 </script>
 

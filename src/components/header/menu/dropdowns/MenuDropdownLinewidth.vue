@@ -33,7 +33,6 @@ export default {
     components: {
         MenuDropdown,
         MenuDropdownItem,
-        MenuDropdownSeparator,
     },
     computed: mapState([ 'activeContext' ]),
     methods: {

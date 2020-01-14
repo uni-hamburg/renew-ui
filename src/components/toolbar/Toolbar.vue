@@ -12,8 +12,8 @@
         <div
           v-else
           class="rnw-toolbar-tool"
-          @click="tool.action"
           :class="{ 'disabled': tool.disabled }"
+          @click="tool.action"
         >
           <i :class="tool.icon" />
         </div>
