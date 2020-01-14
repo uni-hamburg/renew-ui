@@ -19,7 +19,7 @@ import MenuDropdownView from './dropdowns/MenuDropdownView';
 import MenuDropdownRun from './dropdowns/MenuDropdownRun';
 import MenuDropdownHelp from './dropdowns/MenuDropdownHelp';
 import MenuDropdownWindow from './dropdowns/MenuDropdownWindow';
-import MenuDropdownAttributes from './dropdowns/MenuDropdownAttributes';
+//import MenuDropdownAttributes from './dropdowns/MenuDropdownAttributes';
 import MenuDropdownFillColor from './dropdowns/MenuDropdownFillColor';
 import MenuDropdownLinewidth from './dropdowns/MenuDropdownLinewidth';
 import MenuDropdownPenColor from './dropdowns/MenuDropdownPenColor.vue';
