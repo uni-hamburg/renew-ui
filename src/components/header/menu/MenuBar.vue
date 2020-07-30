@@ -19,10 +19,31 @@ import MenuDropdownView from './dropdowns/MenuDropdownView';
 import MenuDropdownRun from './dropdowns/MenuDropdownRun';
 import MenuDropdownHelp from './dropdowns/MenuDropdownHelp';
 import MenuDropdownWindow from './dropdowns/MenuDropdownWindow';
+import MenuDropdownFillColor from './dropdowns/MenuDropdownFillColor';
+import MenuDropdownLinewidth from './dropdowns/MenuDropdownLinewidth';
+import MenuDropdownPenColor from './dropdowns/MenuDropdownPenColor.vue';
+import MenuDropdownFillOpaqueness from './dropdowns/MenuDropdownFillOpaqueness.vue';
+import MenuDropdownPenOpaqueness from './dropdowns/MenuDropdownPenOpaqueness.vue';
+import MenuDropdownVisibility from './dropdowns/MenuDropdownVisibility.vue';
+import MenuDropdownTextColor from './dropdowns/MenuDropdownTextColor.vue';
+import MenuDropdownFontSize from './dropdowns/MenuDropdownFontSize.vue';
+import MenuDropdownFontFamily from './dropdowns/MenuDropdownFontFamily.vue';
+
 
 const menuBarItems = [
     { id: 'file', label: 'File', dropdown: MenuDropdownFile },
     { id: 'edit', label: 'Edit', dropdown: MenuDropdownEdit },
+    { id: 'fillcolor', label: 'Fill Color', dropdown: MenuDropdownFillColor },
+    { id: 'fillOpaqueness', label: 'Fill opacity', dropdown: MenuDropdownFillOpaqueness },
+    { id: 'linewidth', label: 'LineWidth', dropdown: MenuDropdownLinewidth },
+    { id: 'penColor', label: 'PenColor', dropdown: MenuDropdownPenColor },
+    { id: 'penOpaqueness', label: 'Pen opacity', dropdown: MenuDropdownPenOpaqueness },
+    //{ id: 'visibility', label: 'Visibility', dropdown: MenuDropdownVisibility },
+
+    { id: 'textfont', label: 'Font', dropdown: MenuDropdownFontFamily },
+    { id: 'textcolor', label: 'Text Color', dropdown: MenuDropdownTextColor },
+    { id: 'fontsize', label: 'Font Size', dropdown: MenuDropdownFontSize },
+
     { id: 'view', label: 'View', dropdown: MenuDropdownView },
     //    { id: 'layout', label: 'Layout' },
     //    { id: 'attributes', label: 'Attributes' },
