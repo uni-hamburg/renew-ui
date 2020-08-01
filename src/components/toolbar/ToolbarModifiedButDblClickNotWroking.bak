@@ -10,11 +10,10 @@
           class="rnw-toolbar-separator"
         />
         <div
-           v-else
+          v-else
           class="rnw-toolbar-tool"
           @click="tool.action"
           :class="{ 'disabled': tool.disabled }"
-          @dblclick="tool.dblclickAction"
         >
           <i :class="tool.icon" />
         </div>
@@ -48,7 +47,6 @@ export default {
                     icon: 'icon-bold',
                     dblclickAction : this.boldDblClickCommand,
                     action: this.boldCommand,
-                    disabled: false,
                     
                 },
                 {
@@ -63,7 +61,6 @@ export default {
                     icon: 'icon-underline',
                     dblclickAction : this.underlineDblClickCommand,
                     action: this.underlineCommand,
-                    disabled: false,
                 },
                 { type: 'separator' },
                 {
@@ -71,26 +68,22 @@ export default {
                     icon: 'icon-align-left',
                     dblclickAction : this.textAlignLeftDblClickCommand,
                     action: this.textAlignLeftCommand,
-                    disabled: false,
                 },
                 {
                     type: 'align-center',
                     icon: 'icon-align-center',
                     dblclickAction : this.textAlignCenterDblClickCommand,
                     action: this.textAlignCenterCommand,
-                    disabled: false,
                 },
                 {
                     type: 'align-right',
                     icon: 'icon-align-right',
                     dblclickAction : this.textAlignRightDblClickCommand,
                     action: this.textAlignRightCommand,
-                    disabled: false,
                 },
             ],
         };
     },
-    
     
     computed: mapState([ 'activeContext' ]),
     methods: {
@@ -102,14 +95,17 @@ export default {
         },
         italicCommand () {
           const attribute = 'italic';
+          console.log("inside function changeTextStyle() with attribute: ", attribute);
           this.$instances[this.activeContext].fire('textstyle.fontstyle', attribute);
         },
         boldCommand () {
           const attribute = 'bold';
+          console.log("inside function changeTextStyle() with attribute: ", attribute);
           this.$instances[this.activeContext].fire('textstyle.fontweight', attribute);
         },
         underlineCommand () {
           const attribute = 'underline';
+          console.log("inside function changeTextStyle() with attribute: ", attribute);
           this.$instances[this.activeContext].fire('textstyle.textdecoration', attribute);
         },
         textAlignLeftCommand () {
@@ -121,22 +117,31 @@ export default {
         textAlignRightCommand () {
           this.$instances[this.activeContext].fire('textstyle.textalignment', "right-middle");
         },
+
+
         italicDblClickCommand () {
+        console.log("here dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"font-style:italic");
         },
         boldDblClickCommand () {
+        console.log("here dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"font-weight:bold");
         },
         underlineDblClickCommand () {
+        console.log("here dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"text-decoration:underline");
         },
+
         textAlignCenterDblClickCommand () {
+        console.log("here  dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"align:center-middle");
         },
         textAlignRightDblClickCommand () {
+        console.log("here  dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"align:right-middle");
         },
         textAlignLeftDblClickCommand () {
+        console.log("here  dbl");
         this.$instances[this.activeContext].fire('edit.dblClickTextstyle',"align:left-middle");
         },
     },
