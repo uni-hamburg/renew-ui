@@ -59,7 +59,12 @@ export default {
     components: {
         MenuBarItem,
     },
-    props: [ 'drawing' ],
+    props: {
+        drawing: {
+            type: Object,
+            required: true,
+        },
+    },
     data () {
         return {
             menuBarItems,

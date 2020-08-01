@@ -10,7 +10,12 @@
 <script>
 export default {
     name: 'MenuDropdown',
-    props: [ 'isActive' ],
+    props: {
+        isActive: {
+            type: Boolean,
+            default: false,
+        },
+    },
 };
 </script>
 

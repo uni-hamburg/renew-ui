@@ -10,7 +10,7 @@
           class="rnw-toolbar-separator"
         />
         <div
-          v-else
+           v-else
           class="rnw-toolbar-tool"
           @click="tool.action"
           :class="{ 'disabled': tool.disabled }"
